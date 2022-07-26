@@ -1,0 +1,66 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Shadows Into Light', cursive;
+	display: flex;
+	flex-direction: column;
+	margin-top: 0;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+}
+
+.menu {
+
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+button {
+
+}
+
+.grid {
+    height: 700px;
+    width: 700px;
+    margin-top: 25px;
+    display: grid;
+}
+
+*{
+	box-sizing: border-box;
+	transition: all 0.3s ease;
+}
+
+nav{
+	display: flex;
+	flex-direction: row;
+	height: 50px;
+	z-index: 1;
+}
+nav a {
+	margin-top: -150px; 
+	padding: 15px;
+	height: 200px;
+	text-decoration: none;
+	font-size: 1.3em;
+	color: white;
+	border-radius: 0 0 5px 5px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav a:hover {
+	margin-top:0px;
+}
+
+#menu {
+	background-color: #4caf50;
+}
