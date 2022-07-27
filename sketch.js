@@ -2,7 +2,6 @@ let color = 'black';
 const colorPicker = document.getElementById('colorPicker')
 colorPicker.oninput = (e) => changeColor(e.target.value)
 
-
 function populateGrid(size) {
     let grid = document.querySelector('.grid');
     let squares = grid.querySelectorAll('div');
@@ -12,24 +11,25 @@ function populateGrid(size) {
 
     for (let i = 0; i < size * size; i++) { 
         let square = document.createElement("div");
+        square.setAttribute("id", "cell");
         square.addEventListener('mouseover', colorSquare);
         square.addEventListener('mouseDown', colorSquare);
         square.style.backgroundColor = "white";
-        grid.insertAdjacentElement('beforeend', square);
+        grid.insertAdjacentElement('beforeend', square); 
     } 
 }
 
 populateGrid(16);
 
 function changeSize(input) {
-    if (input >= 2 &  input <= 64) {
+    if (input >= 2 & input <= 64) {
         populateGrid(input);
     } else {
         alert("Value can only be between 2-64");
     }
 }
 
-let mouseDown = false
+let mouseDown = false 
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
 
