@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+
     <title>Etch-A-Sketch</title>
 </head>
 <body>
@@ -20,20 +20,41 @@
             </div>
             <div class="container">
                 <div class="info">
-                    Information
+                    <p>
+                        To use the website, simply click and drag on the
+                        Etch-A-Sketch board to create your designs.
+                    </p>
+                    <p>
+                        To adjust the size of the board, enter a value between
+                        <b>2-64</b> in the textbox within the tools section 
+                        and hit the set size button.
+                    </p>
+                    <p>
+                        There are a variety of tools at your disposal, including
+                        a <b>color brush</b>, <b>rainbow brush</b>, and an 
+                        <b>eraser</b>.
+                    </p>
+                    <p>
+                        To use the color brush, click on the circular
+                        color-picker and choose any color. Use the
+                        <b>dropper</b> to select a previously used color that is on the board.
+                    </p>
+                    <p>
+                        To clear the grid, press the <b>clear board</b> button.
+                    </p>
                 </div>
                 <div class="buttons">
                     <input id="colorPicker" type="color" value="333333"/>
-                    <button id="colorBtn" onclick="colorButton()">Colored Brush</button>
                     <button id="rainbowBtn" onclick="changeColor('random')">Rainbow Brush</button>
                     <button id="eraserBtn" onclick="changeColor('white')">Eraser</button>
                     <button id="clearBtn" onclick="resetGrid()">Clear Grid</button>                
-                    <input type="text" placeholder="Enter Board Size" value="16" onchange="changeSize(this.value)"/>
+                    <input type="text" placeholder="Enter Board Size" onchange="changeSize(this.value)"/>
                     <button>Set Size</button>
                 </div>
             </div>
             <div class="footer">
                 Made by Shaaf Shahzad
+                <img src="/githubfav.png/">
             </div>
         </div>
         <div class="grid"></div>
