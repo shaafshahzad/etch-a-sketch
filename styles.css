@@ -1,55 +1,61 @@
 body {
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Shadows Into Light', cursive;
 	display: flex;
 	flex-direction: column;
 	margin-top: 0;
+    background-color: gray;
 }
 
 .container {
 	display: flex;
 	flex-direction: column;
     align-items: center;
-}
-
-.menu {
-
+    justify-content: space-between;
 }
 
 .buttons {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    justify-content: space-around;
+    padding: 25px;
 }
 
-button {
-
+.header {
+    font-size: 50px;
+    margin-top: 10px;
 }
 
 .grid {
-    height: 700px;
-    width: 700px;
-    margin-top: 25px;
+    height: 650px;
+    width: 650px;
     display: grid;
+    margin-top: 40px;
 }
 
-*{
+.square {
+    border: black;
+    border-color: black;
+}
+
+* {
 	box-sizing: border-box;
 	transition: all 0.3s ease;
 }
 
-nav{
+nav {
 	display: flex;
 	flex-direction: row;
 	height: 50px;
 	z-index: 1;
 }
+
 nav a {
 	margin-top: -150px; 
-	padding: 15px;
-	height: 200px;
+	height: 225px;
+    width: 700px;
 	text-decoration: none;
 	font-size: 1.3em;
-	color: white;
+	color: black;
 	border-radius: 0 0 5px 5px; 
     display: flex;
     flex-direction: column;
@@ -62,5 +68,8 @@ nav a:hover {
 }
 
 #menu {
-	background-color: #4caf50;
+	background: rgba(255,255,255,0.5);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.25);
 }
