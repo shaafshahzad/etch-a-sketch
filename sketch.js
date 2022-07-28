@@ -36,7 +36,7 @@ document.body.onmouseup = () => (mouseDown = false)
 function colorSquare() {
     if (mouseDown) {
         if (color === 'random') {
-            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;                              
         } else {
             this.style.backgroundColor = color;
         }
@@ -45,6 +45,19 @@ function colorSquare() {
 
 function changeColor(choice) {
     color = choice;
+    if (choice === 'random') {
+        currentMode.setAttribute('style', 'white-space: pre;');
+        currentMode.textContent = 'Current Mode:\r\n';
+        currentMode.textContent += 'Rainbow Brush';
+    } else if (choice === 'white') {
+        currentMode.setAttribute('style', 'white-space: pre;');
+        currentMode.textContent = 'Current Mode:\r\n';
+        currentMode.textContent += 'Eraser';
+    } else {
+        currentMode.setAttribute('style', 'white-space: pre;');
+        currentMode.textContent = 'Current Mode:\r\n';
+        currentMode.textContent += 'Colored Brush';
+    }
 }
 
 function resetGrid() {
