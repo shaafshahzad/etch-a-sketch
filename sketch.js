@@ -13,7 +13,7 @@ function populateGrid(size) {
         let square = document.createElement("div");
         square.setAttribute("id", "cell");
         square.addEventListener('mouseover', colorSquare);
-        square.addEventListener('mouseDown', colorSquare);
+        square.addEventListener('mousedown', colorSquare);
         square.style.backgroundColor = "white";
         grid.insertAdjacentElement('beforeend', square); 
     } 
@@ -24,6 +24,8 @@ populateGrid(16);
 function changeSize(input) {
     if (input >= 2 & input <= 64) {
         populateGrid(input);
+        currentSize.setAttribute('style', 'white-space: pre;');
+        currentSize.textContent = 'Size: ' + input + ' x ' + input;
     } else {
         alert("Value can only be between 2-64");
     }
@@ -36,9 +38,11 @@ document.body.onmouseup = () => (mouseDown = false)
 function colorSquare() {
     if (mouseDown) {
         if (color === 'random') {
-            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;                              
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;  
+            evt.preventDefault();                     
         } else {
             this.style.backgroundColor = color;
+            evt.preventDefault();
         }
     }
 }
@@ -49,14 +53,17 @@ function changeColor(choice) {
         currentMode.setAttribute('style', 'white-space: pre;');
         currentMode.textContent = 'Current Mode:\r\n';
         currentMode.textContent += 'Rainbow Brush';
+        evt.preventDefault();                     
     } else if (choice === 'white') {
         currentMode.setAttribute('style', 'white-space: pre;');
         currentMode.textContent = 'Current Mode:\r\n';
         currentMode.textContent += 'Eraser';
+        evt.preventDefault();                     
     } else {
         currentMode.setAttribute('style', 'white-space: pre;');
         currentMode.textContent = 'Current Mode:\r\n';
         currentMode.textContent += 'Colored Brush';
+        evt.preventDefault();                     
     }
 }
 

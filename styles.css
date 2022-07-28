@@ -124,6 +124,14 @@ input[type='color']::-webkit-color-swatch {
     text-align: center;
 }
 
+#currentSize {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+    text-align: center;
+}
+
 .footer {
     font-weight: 300;
     gap: 5px;
