@@ -1,76 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+let color = 'black';
+let currentColor = 'black';
+const colorPicker = document.getElementById('colorPicker');
+colorPicker.oninput = (e) => changeColor(e.target.value);
 
-    <title>Etch-A-Sketch</title>
-</head>
-<body>
+function populateGrid(size) {
+    let grid = document.querySelector('.grid');
+    let squares = grid.querySelectorAll('div');
+    squares.forEach((div) => div.remove());
+    grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-    <div class="main">
-        <div class="sidebar">
-            <div class="header">
-                Etch-A-Sketch
-            </div>
-            <div class="container">
-                <div class="info">
-                    <p>
-                        To use the website, simply click and drag on the
-                        Etch-A-Sketch board to create your designs.
-                    </p>
-                    <p>
-                        To adjust the size of the board, enter a value between
-                        <b>2-64</b> in the textbox within the tools section 
-                        and hit the set size button.
-                    </p>
-                    <p>
-                        There are a variety of tools at your disposal, including
-                        a <b>colored brush</b>, <b>rainbow brush</b>, and an 
-                        <b>eraser</b>.
-                    </p>
-                    <p>
-                        To use the color brush, click on the circular
-                        color-picker and choose any color. Use the
-                        <b>dropper</b> to select a previously used color that is on the board.
-                    </p>
-                    <p>
-                        To clear the grid, press the <b>clear board</b> button.
-                    </p>
-                </div>
-                <div class="buttons">
-                    <input id="colorPicker" type="color" value="333333"/>
-                    <button id="rainbowBtn" onclick="changeColor('random')">Rainbow Brush</button>
-                    <button id="eraserBtn" onclick="changeColor('white')">Eraser</button>
-                    <button id="clearBtn" onclick="resetGrid()">Clear Grid</button>                
-                    <input type="text" placeholder="Enter Board Size" onchange="changeSize(this.value)"/>
-                    <button>Set Size</button>
-                    <div id="currentMode">
-                        Current Mode:
-                        <br>
-                        Colored Brush
-                    </div>
-                    <div id="currentSize">
-                        Size: 16 x 16
-                    </div>
-                </div>
-            </div>
-            <div class="footer">
-                Made by Shaaf Shahzad
-                <a href="https://github.com/shaafshahzad">
-                    <img src="githubfav.png">
-                </a>
-            </div>
-        </div>
-        <div class="grid"></div>
-    </div>
+    for (let i = 0; i < size * size; i++) { 
+        let square = document.createElement("div");
+        square.setAttribute("id", "cell");
+        square.addEventListener('mouseover', colorSquare);
+        square.addEventListener('mousedown', colorSquare);
+        square.style.backgroundColor = "white";
+        grid.insertAdjacentElement('beforeend', square); 
+    } 
+}
 
-    <script src="sketch.js"></script>
+populateGrid(16);
 
-</body>
-</html>
+function changeSize(input) {
+    if (input >= 2 & input <= 64) {
+        populateGrid(input);
+        currentSize.setAttribute('style', 'white-space: pre;');
+        currentSize.textContent = 'Size: ' + input + ' x ' + input;
+    } else {
+        alert("Value can only be between 2-64");
+    }
+}
+
+let mouseDown = false 
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+
+function colorSquare() {
+    if (mouseDown) {
+        if (color === 'random') {
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;  
+        } else if (color === 'white') {
+            this.style.backgroundColor = 'white';
+        } else {   
+            this.style.backgroundColor = currentColor;
+        }
+    }
+}
+
+function changeColor(choice) {
+
+    color = choice;
+
+    if (choice === 'random') {
+        currentMode.setAttribute('style', 'white-space: pre;');
+        currentMode.textContent = 'Current Mode:\r\n';
+        currentMode.textContent += 'Rainbow Brush';
+    } else if (choice === 'white') {
+        currentMode.setAttribute('style', 'white-space: pre;');
+        currentMode.textContent = 'Current Mode:\r\n';
+        currentMode.textContent += 'Eraser';
+    } else {
+        currentMode.setAttribute('style', 'white-space: pre;');
+        currentMode.textContent = 'Current Mode:\r\n';
+        currentMode.textContent += 'Colored Brush';
+    }
+}
+
+function resetGrid() {
+    let grid = document.querySelector('.grid');
+    let squares = grid.querySelectorAll('div');
+    squares.forEach((div) => div.style.backgroundColor = 'white'); 
+}
+
+function changeHex(pickerColor) {
+    document.getElementById("currentColor").innerText = pickerColor;
+    currentColor = pickerColor;
+    return currentColor;
+}
