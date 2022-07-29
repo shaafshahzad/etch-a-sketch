@@ -74,7 +74,6 @@ function resetGrid() {
 }
 
 function changeHex(pickerColor) {
-    document.getElementById("currentColor").innerText = pickerColor;
     currentColor = pickerColor;
     return currentColor;
 }
