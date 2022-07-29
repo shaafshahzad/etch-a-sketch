@@ -1,6 +1,7 @@
 let color = 'black';
-const colorPicker = document.getElementById('colorPicker')
-colorPicker.oninput = (e) => changeColor(e.target.value)
+let currentColor = 'black';
+const colorPicker = document.getElementById('colorPicker');
+colorPicker.oninput = (e) => changeColor(e.target.value);
 
 function populateGrid(size) {
     let grid = document.querySelector('.grid');
@@ -39,31 +40,30 @@ function colorSquare() {
     if (mouseDown) {
         if (color === 'random') {
             this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;  
-            evt.preventDefault();                     
-        } else {
-            this.style.backgroundColor = color;
-            evt.preventDefault();
+        } else if (color === 'white') {
+            this.style.backgroundColor = 'white';
+        } else {   
+            this.style.backgroundColor = currentColor;
         }
     }
 }
 
 function changeColor(choice) {
+
     color = choice;
+
     if (choice === 'random') {
         currentMode.setAttribute('style', 'white-space: pre;');
         currentMode.textContent = 'Current Mode:\r\n';
         currentMode.textContent += 'Rainbow Brush';
-        evt.preventDefault();                     
     } else if (choice === 'white') {
         currentMode.setAttribute('style', 'white-space: pre;');
         currentMode.textContent = 'Current Mode:\r\n';
         currentMode.textContent += 'Eraser';
-        evt.preventDefault();                     
     } else {
         currentMode.setAttribute('style', 'white-space: pre;');
         currentMode.textContent = 'Current Mode:\r\n';
         currentMode.textContent += 'Colored Brush';
-        evt.preventDefault();                     
     }
 }
 
@@ -71,4 +71,10 @@ function resetGrid() {
     let grid = document.querySelector('.grid');
     let squares = grid.querySelectorAll('div');
     squares.forEach((div) => div.style.backgroundColor = 'white'); 
+}
+
+function changeHex(pickerColor) {
+    document.getElementById("currentColor").innerText = pickerColor;
+    currentColor = pickerColor;
+    return currentColor;
 }
