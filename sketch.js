@@ -36,15 +36,15 @@ let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
 
-function colorSquare() {
-    if (mouseDown) {
-        if (color === 'random') {
-            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;  
-        } else if (color === 'white') {
-            this.style.backgroundColor = 'white';
-        } else {   
-            this.style.backgroundColor = currentColor;
-        }
+function colorSquare(e) {
+    if (e.type === 'mouseover' && !mouseDown) return
+
+    if (color === 'random') {
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;  
+    } else if (color === 'white') {
+        this.style.backgroundColor = 'white';
+    } else {   
+        this.style.backgroundColor = currentColor;
     }
 }
 
